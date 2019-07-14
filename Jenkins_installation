@@ -1,0 +1,100 @@
+Jenkins
+
+_______________________________________________________
+Installation on AWS.
+
+#!/bin/bash
+
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt install openjdk-8-jdk -y
+wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt update
+sudo apt install jenkins
+service jenkins status
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+exit 0
+
+
+http://10.0.2.222:8080/login?from=%2F
+http://13.58.76.171:8080/login?from=%2F
+
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+71ffa2338ff043148e5025f7944232a7
+
+install suggested plugins - 2 minutes
+
+peter/Asheville08! - set up admin account and email
+
+http://10.0.2.222:8080/ - final url
+http://13.58.76.171:8080/
+
+_________________________________________________________
+Jenkins Architecture:
+
+Jenkins uses jnlp connection to test or prod machines
+
+_________________________________________________________
+Managing Nodes - this part does not work
+
+add slave to jenkins....
+launch new jenkins instance ubuntu 18 lts
+
+Note of change
+https://stackoverflow.com/questions/56098243/jnpl-port-is-missing-from-configure-global-security-in-jenkins
+The 'TCP port for JNLP agents' setting seems to be not available anymore in the 'Configure Global Security' settings. Instead of that modify your agent's settings and set Launch method as 'Launch agent by connecting it to master'. It works similarly to the option that you are looking for:
+
+on master - 
+manage jenkins / global security / agents
+choose a rendom port
+
+manage nodes / new node / name: slave-1 / OK
+remote directory: /home/ubuntu/jenkins
+Launch method: Launch agent by connecting it to master
+SAVE
+
+Click slave-1
+Click Launch - download the file
+Click agent.jar - download the file
+Both files will be needed in order to connect to host later
+
+ssh to slave-1
+https://www.howtoforge.com/tutorial/ubuntu-jenkins-master-slave/
+sudo apt-get update
+sudo apt install openjdk-8-jdk -y
+sudo apt install software-properties-common apt-transport-https -y
+sudo useradd -m -s /bin/bash jenkins
+sudo passwd jenkins
+jenkins
+upload the key 'id_rsa.pub' from the master to slave server nodes
+
+
+connect with filezilla
+copy both files to desktop of agent
+agent.jar  jenkins  slave-agent.jnlp
+mkdir jenkins
+cd jenkins
+execute within jenkins dir:
+java -jar agent.jar -jnlpUrl http://10.0.2.222:8080/computer/slave-1/slave-agent.jnlp -secret 36c2a800ea9ba186837fc5657a73e20722bf7e71df3f3297b67fc433ab90847d -workDir "/home/ubuntu/jenkins"
+
+
+
+Create a new job
+______________________________________________________________
+
+freestype project
+
+job: git-job
+
+
+
+
+
+
+
+
+
+
+

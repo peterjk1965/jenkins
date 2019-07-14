@@ -1,0 +1,31 @@
+Jenkins Intro
+
+CI with Jenkins
+
+
+Test driven development
+
+Code checked in automatically is tested
+
+DevOps - a culture of establishing a culture and a practice.
+
+Jenkins is extensible with 1000 plugins.
+
+More supported versions of Jenkins:
+Jenkins Enterprize
+CloudBees
+Bamboo
+Spinaker
+AWS Code Build
+
+https://github.com/peterjk1965/jenkins.git
+
+
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+
+
+sudo service jenkins stop , start, restart
+
+
+
+
