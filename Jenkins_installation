@@ -26,7 +26,7 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 install suggested plugins - 2 minutes
 
-peter/Asheville08! - set up admin account and email
+admin/SomePassword123! - set up admin account and email
 
 http://10.0.2.222:8080/ - final url
 http://13.58.76.171:8080/
